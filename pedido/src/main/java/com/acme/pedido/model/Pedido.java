@@ -17,4 +17,7 @@ public class Pedido {
     private String id;
     private List<ItemPedido> items;
     private BigDecimal totalImposto;
+    private BigDecimal valorTotalSemImposto;
+    private BigDecimal valorTotalComImposto;
+
 }
