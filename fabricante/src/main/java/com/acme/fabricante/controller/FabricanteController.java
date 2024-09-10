@@ -3,6 +3,7 @@ package com.acme.fabricante.controller;
 import com.acme.fabricante.model.Fabricante;
 import com.acme.fabricante.service.FabricanteService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/")
 @RequiredArgsConstructor
+@Slf4j
 public class FabricanteController {
     private final FabricanteService fabricanteService;
     @GetMapping
@@ -23,6 +25,7 @@ public class FabricanteController {
     }
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable Long id) {
+        log.info("Buscando Fabricante por ID: {}", id);
         Optional<Fabricante> optional = fabricanteService.getById(id);
         if (optional.isPresent()) {
             return ResponseEntity.ok(optional.get());

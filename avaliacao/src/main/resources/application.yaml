@@ -1,15 +1,8 @@
-app:
-  myport: ${PORT:0}
-server:
-  port: ${app.myport}
-
 spring:
   application:
-    name: fabricante-service
-  main:
-    allow-bean-definition-overriding: true
+    name: avaliacao-service
   datasource:
-    url: jdbc:h2:mem:fabricante
+    url: jdbc:h2:mem:avaliacao
     username: sa
     password: 123456
     driver-class-name: org.h2.Driver
@@ -20,6 +13,11 @@ spring:
     show-sql: false
     database-platform: org.hibernate.dialect.H2Dialect
     defer-datasource-initialization: true
+app:
+  myport: ${PORT:0}
+server:
+  port: ${app.myport}
+
 eureka:
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
