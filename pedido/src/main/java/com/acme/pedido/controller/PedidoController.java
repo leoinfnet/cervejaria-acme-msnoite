@@ -3,6 +3,7 @@ package com.acme.pedido.controller;
 import com.acme.pedido.model.ImpostoResponsePayload;
 import com.acme.pedido.model.Pedido;
 import com.acme.pedido.service.ImpostoService;
+import com.acme.pedido.service.NotaFiscalService;
 import com.acme.pedido.service.PedidoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +23,7 @@ import java.util.Map;
 public class PedidoController {
     private final PedidoService pedidoService;
     private final ImpostoService impostoService;
+    private final NotaFiscalService notaFiscalService;
     @PostMapping
     public ResponseEntity create(@RequestBody Pedido pedido) {
         log.info("Iniciando processo pedido: {}", pedido);
@@ -31,6 +33,7 @@ public class PedidoController {
         pedido.setValorTotalSemImposto(valorSemImposto);
         pedido.setValorTotalComImposto(valorSemImposto.add(totalImposto));
         Pedido saved = pedidoService.salvar(pedido);
+        notaFiscalService.emitir(pedido.getId());
         return ResponseEntity.ok(Map.of("pedido", saved));
 
     }

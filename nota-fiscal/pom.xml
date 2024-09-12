@@ -8,10 +8,10 @@
 		<version>3.3.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.acme</groupId>
-	<artifactId>imposto</artifactId>
+	<groupId>br.com.acme</groupId>
+	<artifactId>nota-fiscal</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>imposto</name>
+	<name>nota-fiscal</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
@@ -44,13 +44,16 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
+			<artifactId>spring-boot-starter-amqp</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -60,14 +63,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>io.micrometer</groupId>
@@ -84,9 +79,24 @@
 			<groupId>io.github.openfeign</groupId>
 			<artifactId>feign-micrometer</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.amqp</groupId>
+			<artifactId>spring-rabbit-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-config</artifactId>
+			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
 

@@ -8,10 +8,10 @@
 		<version>3.3.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.acme</groupId>
-	<artifactId>imposto</artifactId>
+	<groupId>br.com.acme</groupId>
+	<artifactId>nota-fiscal-worker</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>imposto</name>
+	<name>nota-fiscal-worker</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
@@ -28,23 +28,11 @@
 	</scm>
 	<properties>
 		<java.version>17</java.version>
-		<spring-cloud.version>2023.0.3</spring-cloud.version>
 	</properties>
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring-cloud.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
+			<artifactId>spring-boot-starter-amqp</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -62,31 +50,9 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-openfeign</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>io.micrometer</groupId>
-			<artifactId>micrometer-tracing-bridge-brave</artifactId>
-			<version>1.3.2</version>
-		</dependency>
-		<dependency>
-			<groupId>io.opentelemetry.instrumentation</groupId>
-			<artifactId>opentelemetry-logback-appender-1.0</artifactId>
-			<version>2.6.0-alpha</version>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>io.github.openfeign</groupId>
-			<artifactId>feign-micrometer</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-config</artifactId>
+			<groupId>org.springframework.amqp</groupId>
+			<artifactId>spring-rabbit-test</artifactId>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 

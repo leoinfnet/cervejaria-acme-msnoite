@@ -2,6 +2,7 @@ package com.acme.imposto.service;
 
 import com.acme.imposto.model.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -9,6 +10,13 @@ import java.math.BigDecimal;
 @Service
 @RequiredArgsConstructor
 public class ImpostoService {
+    @Value("${taxas.usa}")
+    private BigDecimal taxaUSA;
+    @Value("${taxas.europa}")
+    private BigDecimal taxaEuropa;
+    @Value("${taxas.brasil}")
+    private BigDecimal taxaBrasil;
+
     private final CervejaService cervejaService;
     private final FabricanteService fabricanteService;
     public BigDecimal calcularImpostoTotal(PedidoPayload pedidoPayload){
@@ -28,9 +36,9 @@ public class ImpostoService {
 
     private BigDecimal getTaxas(Pais pais){
         return switch (pais){
-            case USA -> new BigDecimal("0.45");
-            case EUROPA -> new BigDecimal("0.31");
-            case BRASIL -> new BigDecimal("0.05");
+            case USA -> taxaUSA;
+            case EUROPA -> taxaEuropa;
+            case BRASIL -> taxaBrasil;
         };
     }
 }
