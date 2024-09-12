@@ -12,4 +12,4 @@ spring:
           search-paths:
             - "config"
           username: leoinfnet
-          password: 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
+          password: ${GITHUB_TOKEN}
