@@ -1,4 +1,10 @@
 spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9998/realms/cervejaria
+          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
   application:
     name: avaliacao-service
   datasource:
@@ -24,3 +30,9 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+
+jwt:
+  auth:
+    converter:
+      resource-id: servicos
+      principal-attribute: user-principal

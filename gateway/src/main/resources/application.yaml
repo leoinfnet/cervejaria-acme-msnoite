@@ -24,7 +24,9 @@ spring:
             - Path=/pedido/**
           filters:
             - StripPrefix=1
-
+            - name: UserAuthentication
+              args:
+                headerName: Authorization
         - id: fabricante
           uri: lb://FABRICANTE-SERVICE
           predicates:

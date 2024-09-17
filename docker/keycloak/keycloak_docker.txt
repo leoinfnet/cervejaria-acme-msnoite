@@ -1,0 +1,1 @@
+docker run -p 9998:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin -v $$SEUDIRETORIOLOCAL:/opt/keycloak/data quay.io/keycloak/keycloak:25.0.5 start-dev
