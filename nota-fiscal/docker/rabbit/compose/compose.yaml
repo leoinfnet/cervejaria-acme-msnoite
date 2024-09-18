@@ -1,0 +1,15 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3.13-management
+    container_name: RABBITMQ
+    ports:
+      - "5672:5672"    # Porta padrão do RabbitMQ
+      - "15672:15672"  # Interface de gerenciamento
+    volumes:
+      - ../conf/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:ro
+      - ../conf/definitions.json:/etc/rabbitmq/definitions.json:ro  # Montar o arquivo de definições
+    networks:
+      - cervejas
+networks:
+  cervejas:
+    external: true
