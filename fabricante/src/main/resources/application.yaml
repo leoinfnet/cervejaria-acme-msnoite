@@ -4,6 +4,8 @@ server:
   port: ${app.myport}
 
 spring:
+  profiles:
+    active: docker
   application:
     name: fabricante-service
   main:

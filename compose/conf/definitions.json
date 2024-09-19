@@ -1,0 +1,117 @@
+{
+  "rabbit_version": "3.13.7",
+  "rabbitmq_version": "3.13.7",
+  "product_name": "RabbitMQ",
+  "product_version": "3.13.7",
+  "users": [
+    {
+      "name": "cervejaria",
+      "password_hash": "2I060qLJHMFSlj/eJqa1Yi2BnOQIrEzYrHRIoh3EtYxBpW4G",
+      "hashing_algorithm": "rabbit_password_hashing_sha256",
+      "tags": [
+        "administrator"
+      ],
+      "limits": {}
+    },
+    {
+      "name": "guest",
+      "password_hash": "AXj+tp7wyrIIRJzABk1S5jACUsEPcjvrP8Dbb3pPcAxVEkGx",
+      "hashing_algorithm": "rabbit_password_hashing_sha256",
+      "tags": [
+        "administrator"
+      ],
+      "limits": {}
+    }
+  ],
+  "vhosts": [
+    {
+      "name": "/",
+      "description": "Default virtual host",
+      "tags": [],
+      "metadata": {
+        "description": "Default virtual host",
+        "tags": [],
+        "default_queue_type": "undefined"
+      }
+    }
+  ],
+  "permissions": [
+    {
+      "user": "guest",
+      "vhost": "/",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    },
+    {
+      "user": "cervejaria",
+      "vhost": "/",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    }
+  ],
+  "topic_permissions": [],
+  "parameters": [],
+  "global_parameters": [
+    {
+      "name": "internal_cluster_id",
+      "value": "rabbitmq-cluster-id-cxlTj5C5TVNCYJpnJ3z-9g"
+    }
+  ],
+  "policies": [],
+  "queues": [
+    {
+      "name": "nota-fiscal-ok.queue",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    },
+    {
+      "name": "nota-fiscal-queue",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {}
+    }
+  ],
+  "exchanges": [
+    {
+      "name": "nota-fiscal-ok.exc",
+      "vhost": "/",
+      "type": "direct",
+      "durable": true,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    },
+    {
+      "name": "nota-fiscal-exc",
+      "vhost": "/",
+      "type": "direct",
+      "durable": true,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    }
+  ],
+  "bindings": [
+    {
+      "source": "nota-fiscal-exc",
+      "vhost": "/",
+      "destination": "nota-fiscal-queue",
+      "destination_type": "queue",
+      "routing_key": "nota-fiscal-rk",
+      "arguments": {}
+    },
+    {
+      "source": "nota-fiscal-ok.exc",
+      "vhost": "/",
+      "destination": "nota-fiscal-ok.queue",
+      "destination_type": "queue",
+      "routing_key": "nota-fiscal-ok.rk",
+      "arguments": {}
+    }
+  ]
+}

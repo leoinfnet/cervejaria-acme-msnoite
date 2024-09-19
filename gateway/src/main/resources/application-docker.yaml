@@ -1,0 +1,7 @@
+server:
+  port: 9999
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://EUREKA-SERVER:8761/eureka

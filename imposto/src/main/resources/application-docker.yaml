@@ -1,0 +1,14 @@
+spring:
+  config:
+    import: optional:configserver:http://CONFIG-SERVER:8888
+  application:
+    name: imposto-service
+server:
+  port: 8080
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    service-url:
+      defaultZone: http://EUREKA-SERVER:8761/eureka
+    fetch-registry: true #default

@@ -1,0 +1,38 @@
+services:
+  mongo:
+    container_name: PEDIDO-MONGO-SERVER
+    image: mongo:7-jammy
+    volumes:
+      - ./mongodb-data:/data/db
+    networks:
+      - cervejaria_acme
+  mongo-express:
+    image: mongo-express:1.0-20-alpine3.19
+    links:
+      - mongo
+    container_name: "mongo-express"
+    ports:
+      - 8090:8081
+    networks:
+      - cervejaria_acme
+  rabbitmq:
+    image: rabbitmq:3.13-management
+    container_name: RABBITMQ
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - ./conf/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:ro
+      -  ./conf/definitions.json:/etc/rabbitmq/definitions.json:ro
+    networks:
+      - cervejaria_acme
+  postgres-nf:
+    image: postgres
+    container_name: POSTGRES-NOTAFISCAL
+    environment:
+      - POSTGRES_PASSWORD=123456
+    networks:
+      - cervejaria_acme
+networks:
+  cervejaria_acme:
+    driver: bridge

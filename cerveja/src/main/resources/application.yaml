@@ -3,6 +3,9 @@ app:
 server:
   port: ${app.myport}
 spring:
+  profiles:
+    active: docker
+
   application:
     name: cerveja-service
   main:
