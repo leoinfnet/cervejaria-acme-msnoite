@@ -54,7 +54,7 @@ services:
       timeout: 2s
       retries: 3
     environment:
-      - GITHUB_CONFIG_PASSWORD=
+      - GITHUB_CONFIG_PASSWORD=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
     depends_on:
       - eureka-server
   imposto-service:
