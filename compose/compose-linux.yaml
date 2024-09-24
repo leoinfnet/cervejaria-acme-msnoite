@@ -38,13 +38,13 @@ services:
 
   eureka-server:
     container_name: EUREKA-SERVER
-    image: leogloriainfnet/eureka:latest
+    image: leogloriainfnet/eureka:linux
     ports:
       - "8761:8761"
     networks:
       - cervejaria_acme
   config-server:
-    image: leogloriainfnet/configserver:latest
+    image: leogloriainfnet/configserver:linux
     container_name: CONFIG-SERVER
     networks:
       - cervejaria_acme
@@ -58,26 +58,26 @@ services:
     depends_on:
       - eureka-server
   imposto-service:
-    image: leogloriainfnet/imposto:latest
+    image: leogloriainfnet/imposto:linux
     networks:
       - cervejaria_acme
     depends_on:
       config-server:
         condition: service_healthy
   fabricante-service:
-    image: leogloriainfnet/fabricante:latest
+    image: leogloriainfnet/fabricante:linux
     networks:
       - cervejaria_acme
     depends_on:
       - eureka-server
   cerveja-service:
-    image: leogloriainfnet/cerveja:latest
+    image: leogloriainfnet/cerveja:linux
     networks:
       - cervejaria_acme
     depends_on:
       - eureka-server
   nota-fiscal-service:
-    image: leogloriainfnet/nota-fiscal:latest
+    image: leogloriainfnet/nota-fiscal:linux
       #build:
       # context: /Users/leonardogloria/infnet/pos-graduacao/ms-noite/cervejaria/nota-fiscal/docker
     # dockerfile: .
@@ -88,14 +88,14 @@ services:
       - rabbitmq
       - postgres-nf
   pedido-service:
-    image: leogloriainfnet/pedido:latest
+    image: leogloriainfnet/pedido:linux
     networks:
       - cervejaria_acme
     depends_on:
       - eureka-server
       - mongo
   gateway-service:
-    image: leogloriainfnet/gateway:latest
+    image: leogloriainfnet/gateway:linux
     networks:
       - cervejaria_acme
     depends_on:
