@@ -5,7 +5,7 @@ spring:
     name: nota-fiscal-service
   main:
     allow-bean-definition-overriding: true
-  dasource:
+  datasource:
     url: jdbc:postgresql://POSTGRES-NOTAFISCAL:5432/postgres
     username: postgres
     password: 123456
@@ -20,7 +20,7 @@ spring:
     host: RABBITMQ
     port: 5672
     username: cervejaria
-    senha: 123456
+    password: 123456
 eureka:
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}

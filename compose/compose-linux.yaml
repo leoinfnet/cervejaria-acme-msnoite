@@ -1,0 +1,107 @@
+services:
+  mongo:
+    container_name: PEDIDO-MONGO-SERVER
+    image: mongo:7-jammy
+    volumes:
+      - ./mongodb-data:/data/db
+    networks:
+      - cervejaria_acme
+  mongo-express:
+    image: mongo-express:1.0-20-alpine3.19
+    links:
+      - mongo
+    container_name: "mongo-express"
+    ports:
+      - 8090:8081
+    networks:
+      - cervejaria_acme
+  rabbitmq:
+    image: rabbitmq:3.13-management
+    container_name: RABBITMQ
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - ./conf/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:ro
+      -  ./conf/definitions.json:/etc/rabbitmq/definitions.json:ro
+    networks:
+      - cervejaria_acme
+  postgres-nf:
+    image: postgres
+    container_name: POSTGRES-NOTAFISCAL
+    #healthcheck:
+      #test: ["CMD-SHELL", "pg_isready -U postgres"]
+    environment:
+      - POSTGRES_PASSWORD=123456
+    networks:
+      - cervejaria_acme
+
+  eureka-server:
+    container_name: EUREKA-SERVER
+    image: leogloriainfnet/eureka:linux
+    ports:
+      - "8761:8761"
+    networks:
+      - cervejaria_acme
+  config-server:
+    image: leogloriainfnet/configserver:linux
+    container_name: CONFIG-SERVER
+    networks:
+      - cervejaria_acme
+    healthcheck:
+      test: ["CMD", "curl", "-f" , "http://localhost:8888/actuator/health"]
+      interval: 30s
+      timeout: 2s
+      retries: 3
+    environment:
+      - GITHUB_CONFIG_PASSWORD=
+    depends_on:
+      - eureka-server
+  imposto-service:
+    image: leogloriainfnet/imposto:linux
+    networks:
+      - cervejaria_acme
+    depends_on:
+       config-server:
+         condition: service_healthy
+  fabricante-service:
+    image: leogloriainfnet/fabricante:linux
+    networks:
+      - cervejaria_acme
+    depends_on:
+      - eureka-server
+  cerveja-service:
+    image: leogloriainfnet/cerveja:linux
+    networks:
+      - cervejaria_acme
+    depends_on:
+      - eureka-server
+  nota-fiscal-service:
+    image: leogloriainfnet/nota-fiscal:linux
+    #build:
+     # context: /Users/leonardogloria/infnet/pos-graduacao/ms-noite/cervejaria/nota-fiscal/docker
+     # dockerfile: .
+    networks:
+      - cervejaria_acme
+    depends_on:
+      - eureka-server
+      - rabbitmq
+      - postgres-nf
+  pedido-service:
+    image: leogloriainfnet/pedido:linux
+    networks:
+      - cervejaria_acme
+    depends_on:
+      - eureka-server
+      - mongo
+  gateway-service:
+    image: leogloriainfnet/gateway:linux
+    networks:
+      - cervejaria_acme
+    depends_on:
+      - eureka-server
+    ports:
+      - "9999:9999"
+networks:
+  cervejaria_acme:
+    driver: bridge
