@@ -35,12 +35,13 @@
     <springProfile name="default">
         <root level="INFO">
             <appender-ref ref="STDOUT"/>
+            <appender-ref ref="PAPERTRAIL"/>
         </root>
     </springProfile>
 
-    <springProfile name="docker">
+    <springProfile name="prod">
         <root level="INFO">
-            <appender-ref ref="STDOUT"/>
+            <appender-ref ref="PAPERTRAIL"/>
             <!-- <appender-ref ref="GELF"/> -->
         </root>
     </springProfile>

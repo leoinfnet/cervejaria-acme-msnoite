@@ -4,13 +4,11 @@ server:
   port: ${app.myport}
 
 spring:
-  profiles:
-    active: docker
   application:
     name: nota-fiscal-service
   main:
     allow-bean-definition-overriding: true
-  datasource:
+  dasource:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
     password: 123456
