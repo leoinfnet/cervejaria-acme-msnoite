@@ -1,0 +1,13 @@
+replicaCount: 1
+
+image:
+  repository: leogloriainfnet/avaliacao
+  tag: latest-k8s
+pod:
+  label: service
+  value: avaliacao
+service:
+  port: 8080
+namespace: cervejas
+imagePullSecrets:
+  name: mysecret

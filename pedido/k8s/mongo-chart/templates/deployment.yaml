@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: cervejas
+  name: {{.Release.Name}}-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{.Values.pod.label}}: {{.Values.pod.value}}
+  template:
+    metadata:
+      name: {{.Release.Name}}-pod
+      namespace: {{.Values.namespace}}
+      labels:
+        {{.Values.pod.label}}: {{.Values.pod.value}}
+    spec:
+      containers:
+        - name: {{.Release.Name}}-container
+          image: {{.Values.image.repository.mongo.image}}:{{.Values.image.repository.mongo.tag}}
+          imagePullPolicy: Always
+        - name: {{.Release.Name}}-express-container
+          image: mongo-express:1.0-20-alpine3.19
+          imagePullPolicy: Always
+          env:
+            - name: ME_CONFIG_MONGODB_SERVER
+              value: localhost
+
+

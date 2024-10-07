@@ -20,7 +20,6 @@ import java.util.List;
 public class AvaliacaoController {
     private final AvaliacaoService avalicaoService;
     @GetMapping("/{id}")
-
     public ResponseEntity<?> getAvaliacao(@PathVariable Long id) {
         log.info("Get avaliacao: {}", id);
         List<Avaliacao> allByCervejaId = avalicaoService.getAllByCervejaId(id);

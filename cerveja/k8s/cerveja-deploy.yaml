@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: cervejas
+  name: cerveja-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: cerveja
+  template:
+    metadata:
+      name: cerveja-pod
+      namespace: cervejas
+      labels:
+        service: cerveja
+    spec:
+      containers:
+        - name: cerveja-container
+          image: leogloriainfnet/cerveja:latest-k8s
+          imagePullPolicy: Always
+

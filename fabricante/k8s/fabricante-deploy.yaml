@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: cervejas
+  name: fabricante-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: fabricante
+  template:
+    metadata:
+      name: fabricante-pod
+      namespace: cervejas
+      labels:
+        service: fabricante
+    spec:
+      containers:
+        - name: fabricante-container
+          image: leogloriainfnet/fabricante:latest-k8s
+          imagePullPolicy: Always
+          resources:
+            limits:
+              memory: "300Mi"
+            requests:
+              memory: "300Mi"

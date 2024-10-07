@@ -1,0 +1,13 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://dbpedidos-service.cervejas.svc.cluster.local:27017/pedidos
+  application:
+    name: pedido-service
+server:
+  port: 8080
+
+services:
+  cerveja: cerveja-service
+  fabricante: fabricante-service
+  imposto: imposto-service

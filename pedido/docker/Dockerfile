@@ -1,5 +1,5 @@
 FROM amazoncorretto:21
-MAINTAINER leogloriainfnet
+LABEL author=leogloriainfnet
 WORKDIR /app
 COPY app.jar ./
 ENTRYPOINT ["java", "-jar", "app.jar"]

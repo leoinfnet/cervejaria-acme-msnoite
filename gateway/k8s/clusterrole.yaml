@@ -1,0 +1,8 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: service-lister
+rules:
+  - verbs: ["list", "get", "watch"]
+    resources: ["services", "endpoints", "pods"]
+    apiGroups: [""]

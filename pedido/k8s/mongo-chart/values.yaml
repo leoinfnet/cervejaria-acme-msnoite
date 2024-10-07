@@ -1,0 +1,18 @@
+replicaCount: 1
+
+image:
+  repository:
+    mongo:
+      image: mongo
+      tag: 7-jammy
+    mongo-express:
+      image: mongo-express
+      tag: 1.0-20-alpine3.19
+pod:
+  label: service
+  value: dbpedidos
+service:
+  port: 27017
+namespace: cervejas
+imagePullSecrets:
+  name: mysecret

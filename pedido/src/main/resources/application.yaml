@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: docker
+    active: k8s
   application:
     name: pedido-service
 

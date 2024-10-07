@@ -1,0 +1,4 @@
+apiVersion: v2
+name: cerveja
+version: 0.1.0
+description: Chart do Serviço de Cervejas

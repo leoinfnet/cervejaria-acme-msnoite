@@ -1,0 +1,13 @@
+replicaCount: 1
+
+image:
+  repository: leogloriainfnet/pedido
+  tag: latest-k8s
+pod:
+  label: service
+  value: pedido
+service:
+  port: 8080
+namespace: cervejas
+imagePullSecrets:
+  name: mysecret

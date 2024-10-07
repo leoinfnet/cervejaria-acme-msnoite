@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: docker
+    active: k8s
   config:
     import: optional:configserver:http://localhost:8888
   application:
@@ -16,3 +16,6 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka
     fetch-registry: true #default
+services:
+  cerveja: CERVEJA-SERVICE
+  fabricante: FABRICANTE-SERVICE

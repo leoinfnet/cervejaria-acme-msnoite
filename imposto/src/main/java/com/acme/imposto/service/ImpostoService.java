@@ -10,11 +10,11 @@ import java.math.BigDecimal;
 @Service
 @RequiredArgsConstructor
 public class ImpostoService {
-    @Value("${taxas.usa}")
+    @Value("${usa}")
     private BigDecimal taxaUSA;
-    @Value("${taxas.europa}")
+    @Value("${europa}")
     private BigDecimal taxaEuropa;
-    @Value("${taxas.brasil}")
+    @Value("${brasil}")
     private BigDecimal taxaBrasil;
 
     private final CervejaService cervejaService;

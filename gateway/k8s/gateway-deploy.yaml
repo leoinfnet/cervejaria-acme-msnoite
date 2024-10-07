@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gateway-deploy
+  labels:
+    app: gateway-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: gateway
+  template:
+    metadata:
+      name: gateway-deploy
+      labels:
+        service: gateway
+    spec:
+      containers:
+        - name: gateway-deploy
+          image: leogloriainfnet/gateway:latest-k8s
+          imagePullPolicy: Always
+      restartPolicy: Always
+      

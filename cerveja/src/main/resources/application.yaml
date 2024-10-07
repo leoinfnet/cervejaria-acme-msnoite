@@ -1,11 +1,6 @@
-app:
-  myport: ${PORT:0}
-server:
-  port: ${app.myport}
 spring:
   profiles:
-    active: docker
-
+    active: k8s
   application:
     name: cerveja-service
   main:
@@ -22,7 +17,10 @@ spring:
     show-sql: false
     database-platform: org.hibernate.dialect.H2Dialect
     defer-datasource-initialization: true
-
+app:
+  myport: ${PORT:0}
+server:
+  port: ${app.myport}
 eureka:
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
@@ -38,4 +36,6 @@ resilience4j:
         minimum-number-of-calls: 1
         sliding-window-size: 3
         wait-duration-in-open-state:
-          seconds: 1000
+          seconds: 10
+services:
+  avaliacao: AVALIACAO-SERVICE

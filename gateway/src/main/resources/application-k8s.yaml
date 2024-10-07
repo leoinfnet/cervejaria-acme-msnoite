@@ -1,0 +1,40 @@
+server:
+  port: 9999
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: cerveja
+          uri: lb://cerveja-service
+          predicates:
+            - Path=/cerveja/**
+          filters:
+            - StripPrefix=1
+            - name: Retry
+              args:
+                retries: 3
+                methods: GET,POST
+                backoff:
+                  initialInterval: 100ms
+                  maxInterval: 2s
+                  multiplier: 1.5
+        - id: pedido
+          uri: lb://pedido-service
+          predicates:
+            - Path=/pedido/**
+          filters:
+            - StripPrefix=1
+        - id: fabricante
+          uri: lb://fabricante-service
+          predicates:
+            - Path=/fabricante/**
+          filters:
+            - StripPrefix=1
+        - id: avaliacao
+          uri: lb://avaliacao-service
+          predicates:
+            - Path=/avaliacao/**
+          filters:
+            - StripPrefix=1

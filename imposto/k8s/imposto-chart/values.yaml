@@ -1,0 +1,17 @@
+replicaCount: 1
+
+image:
+  repository: leogloriainfnet/imposto
+  tag: latest-k8s
+pod:
+  label: service
+  value: imposto
+service:
+  port: 8080
+namespace: cervejas
+imagePullSecrets:
+  name: mysecret
+configMapData:
+  usa: 0.79
+  europa: 0.98
+  brasil: 0.34

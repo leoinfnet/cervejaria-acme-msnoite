@@ -5,7 +5,7 @@ server:
 
 spring:
   profiles:
-    active: docker
+    active: k8s
   application:
     name: fabricante-service
   main:

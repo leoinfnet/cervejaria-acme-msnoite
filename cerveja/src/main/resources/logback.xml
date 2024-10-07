@@ -3,9 +3,9 @@
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
     <appender class="ch.qos.logback.classic.net.SyslogAppender" name="PAPERTRAIL">
         <syslogHost>logs3.papertrailapp.com</syslogHost>
-        <!-- sanica7964@mvpalace.com-->
+        <!-- gonami4952@exweme.com-->
         <!-- Infnet2024  -->
-        <port>29471</port>
+        <port>19915</port>
         <facility>USER</facility>
         <suffixPattern>%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr([%X{traceId:-},%X{spanId:-}]]) %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta}
             %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint}
@@ -41,6 +41,14 @@
     <springProfile name="docker">
         <root level="INFO">
             <appender-ref ref="STDOUT"/>
+            <appender-ref ref="PAPERTRAIL"/>
+            <!-- <appender-ref ref="GELF"/> -->
+        </root>
+    </springProfile>
+    <springProfile name="k8s">
+        <root level="INFO">
+            <appender-ref ref="STDOUT"/>
+            <appender-ref ref="PAPERTRAIL"/>
             <!-- <appender-ref ref="GELF"/> -->
         </root>
     </springProfile>

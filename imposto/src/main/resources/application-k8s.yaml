@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: imposto-service
+server:
+  port: 8080
+services:
+  cerveja: cerveja-service
+  fabricante: fabricante-service

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: cervejas
+  name: gateway
+  labels:
+    service: gateway
+spec:
+  containers:
+    - name: gateway-container
+      imagePullPolicy: Always
+      image: leogloriainfnet/gateway:latest-k8s

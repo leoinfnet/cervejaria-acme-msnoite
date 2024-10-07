@@ -6,7 +6,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient("IMPOSTO-SERVICE")
+@FeignClient("${services.imposto}")
 public interface ImpostoClient {
     @PostMapping("/")
     ImpostoResponsePayload calcularImposto(@RequestBody Pedido pedido);
